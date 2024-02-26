@@ -67,6 +67,15 @@ fun MyComponent() {
         mutableStateOf(0)
     }
 
+    var ageResult = if (age.value == 0) {
+        ""
+    } else if (age.value > 17) {
+        "Você é MAIOR de idade!"
+    } else {
+        "Você é MENOR de idade!"
+    }
+
+
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
@@ -113,7 +122,11 @@ fun MyComponent() {
 
             Button(
                 onClick = {
-                        age.value--
+                        if (age.value == 0){
+                            age.value
+                        } else {
+                            age.value--
+                        }
                                               },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0XFFED4D2D)),
                 modifier = Modifier.size(84.dp),
@@ -131,7 +144,12 @@ fun MyComponent() {
 
             Button(
                 onClick = {
-                          age.value++
+                            if (age.value == 130){
+                                age.value
+                            } else {
+                                age.value++
+                            }
+
                           Log.i("MyAge", "MyAge: ${age.value}")
                           },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0XFFED4D2D)),
@@ -144,6 +162,19 @@ fun MyComponent() {
                 )
             }
 
+        }
+        Spacer(
+            modifier = Modifier.height(55.dp)
+        )
+        Row () {
+            Text(
+                text = ageResult,
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Black,
+                color = Color(0XFFEE4C2D)
+
+
+            )
         }
     }
 }
